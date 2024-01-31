@@ -5,15 +5,36 @@ class Branch:
 
     all = {}
 
-    def __init__(self, name, address):
-        pass
+    def __init__(self, name, address, id = None):
+        self.id = id
+        self.name = name
+        self.address = address
+
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS branches(
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                address TEXT
+            )
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
 
     @classmethod
     def create(cls, name, address):
-        pass
+        new_branch = cls(name, address)
+        new_branch.save()
+        return new_branch
 
     def delete(self):
-        pass
+        sql = """
+            DELETE FROM branches
+            WHERE id = (?)
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
 
     @classmethod
     def get_all(cls):
