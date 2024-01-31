@@ -16,7 +16,7 @@ class Branch:
 
     @name.setter
     def name(self, name):
-        if (type(name) == str) and (address != ""):
+        if (type(name) == str) and (name != ""):
             self._name = name
         else:
             raise ValueError("Branch name must be a non-empty string")
@@ -35,7 +35,7 @@ class Branch:
     @classmethod
     def create_table(cls):
         sql = """
-            CREATE TABLE IF NOT EXISTS branches(
+            CREATE TABLE IF NOT EXISTS branches (
                 id INTEGER PRIMARY KEY,
                 name TEXT,
                 address TEXT
@@ -91,7 +91,7 @@ class Branch:
             INSERT INTO branches (name, address)
             VALUES (?, ?)
         """
-        CURSOR.execute(sql, (self.name, self.location))
+        CURSOR.execute(sql, (self.name, self.address))
         CONN.commit()
 
         self.id = CURSOR.lastrowid

@@ -1,5 +1,5 @@
 # lib/models/customer.py
-from __init__ import CONN, CURSOR
+from models.__init__ import CONN, CURSOR
 
 class Customer:
 
