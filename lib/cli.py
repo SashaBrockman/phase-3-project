@@ -1,12 +1,11 @@
 # lib/cli.py
 
-from branch_helpers import (
-    exit_program,
-    branch_cli
-)
+from branch_helpers import branch_cli
+from seed import seed_database
 
 
 def main():
+    seed_database()
     while True:
         menu()
         choice = input("> ")

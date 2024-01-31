@@ -1,5 +1,9 @@
 # lib/branch_helpers.py
 
+from models.branch import Branch
+
+#TOP LEVEL HELPERS#
+
 def branch_menu():
     print("You have reached the branch menu.")
     print("Please select an option: ")
@@ -29,8 +33,16 @@ def branch_cli():
         else:
             print("Please enter a valid number command.")
 
+#TIER ONE HELPERS#
+
 def display_branches():
     print("displaying branches...")
+    while True:
+        branches = Branch.get_all()
+        for branch in branches:
+            print_branch(branch)
+        input("Press Enter to return to previous menu")
+        break
 
 def display_customers():
     print("displaying customers...")
@@ -43,3 +55,8 @@ def create_branch():
 
 def delete_branch():
     print("deleting branch...")
+
+#TIER TWO HELPERS#
+
+def print_branch(branch):
+    print(f"Branch name: {branch.name}, Branch address: {branch.address}")

@@ -72,7 +72,7 @@ class Branch:
             SELECT * FROM branches
         """
         rows = CURSOR.execute(sql).fetchall()
-        return [instance_from_db(row) for row in rows]
+        return [cls.instance_from_db(row) for row in rows]
     
     @classmethod
     def instance_from_db(cls, row):
