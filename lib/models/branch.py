@@ -26,6 +26,10 @@ class Branch:
     def save(self):
         pass
 
+    @classmethod
+    def find_by_id(cls, id):
+        pass
+
     @property
     def name(self):
         pass
