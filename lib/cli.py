@@ -2,7 +2,7 @@
 
 from branch_helpers import (
     exit_program,
-    branch_menu
+    branch_cli
 )
 
 
@@ -11,11 +11,12 @@ def main():
         menu()
         choice = input("> ")
         if choice == "0":
-            exit_program()
+            print("Goodbye!")
+            exit()
         elif choice == "1":
-            branch_menu()
+            branch_cli()
         else:
-            print("Invalid choice")
+            print("Please select a valid number option")
 
 
 def menu():
