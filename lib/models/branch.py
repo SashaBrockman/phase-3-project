@@ -45,6 +45,14 @@ class Branch:
         CONN.commit()
 
     @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS branches;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
     def create(cls, name, address):
         new_branch = cls(name, address)
         new_branch.save()
