@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 ipdb = "*"
+pytest = "7.1.3"
 
 [dev-packages]
 
