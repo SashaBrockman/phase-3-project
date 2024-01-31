@@ -10,6 +10,28 @@ class Branch:
         self.name = name
         self.address = address
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if (type(name) == str) and (address != ""):
+            self._name = name
+        else:
+            raise ValueError("Branch name must be a non-empty string")
+
+    @property
+    def address(self):
+        return self._address
+
+    @address.setter
+    def address(self, address):
+        if (type(address) == str) and (" " not in address) and (address != ""):
+            self._address = address
+        else:
+            raise ValueError("Address must be a non-empty string without spaces")
+
     @classmethod
     def create_table(cls):
         sql = """
@@ -75,22 +97,6 @@ class Branch:
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
-
-    @property
-    def name(self):
-        pass
-
-    @name.setter
-    def name(self, name):
-        pass
-
-    @property
-    def address(self):
-        pass
-
-    @address.setter
-    def address(self, address):
-        pass
 
     def customers(self):
         pass
