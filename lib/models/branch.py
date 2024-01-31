@@ -57,11 +57,24 @@ class Branch:
         return department 
 
     def save(self):
-        pass
+        sql = """
+            INSERT INTO branches (name, address)
+            VALUES (?, ?)
+        """
+        CURSOR.execute(sql, (self.name, self.location))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
 
     @classmethod
     def find_by_id(cls, id):
-        pass
+        sql = """
+            SELECT * FROM branches
+            WHERE id = (?)
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
 
     @property
     def name(self):
