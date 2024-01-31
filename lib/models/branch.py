@@ -27,10 +27,10 @@ class Branch:
 
     @address.setter
     def address(self, address):
-        if (type(address) == str) and (" " not in address) and (address != ""):
+        if (type(address) == str) and (address != ""):
             self._address = address
         else:
-            raise ValueError("Address must be a non-empty string without spaces")
+            raise ValueError("Address must be a non-empty string")
 
     @classmethod
     def create_table(cls):

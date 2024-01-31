@@ -45,7 +45,7 @@ class TestBranch:
 
     def test_save(self):
         """Tests the functionality of the save method"""
-        branch = Branch("Hoover", "1234_Downing_St")
+        branch = Branch("Hoover", "1234 Downing St")
         Branch.create_table()
 
         branch.save()
@@ -57,13 +57,13 @@ class TestBranch:
         result = CURSOR.execute(sql).fetchone()
 
         assert((result[0], result[1], result[2]) == 
-                (branch.id, "Hoover", "1234_Downing_St") == 
+                (branch.id, "Hoover", "1234 Downing St") == 
                 (result[0], branch.name, branch.address))
 
     def test_create(self):
         """Tests the creation of a Branch instance and row in table using .create"""
         Branch.create_table()
-        branch = Branch.create("Hoover", "1234_Downing_St")
+        branch = Branch.create("Hoover", "1234 Downing St")
 
         sql = """
             SELECT * FROM branches
@@ -72,5 +72,5 @@ class TestBranch:
         result = CURSOR.execute(sql).fetchone()
 
         assert((result[0], result[1], result[2]) == 
-                (branch.id, "Hoover", "1234_Downing_St") == 
+                (branch.id, "Hoover", "1234 Downing St") == 
                 (result[0], branch.name, branch.address))
