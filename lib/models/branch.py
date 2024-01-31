@@ -38,11 +38,23 @@ class Branch:
 
     @classmethod
     def get_all(cls):
-        pass
+        sql = """
+            SELECT * FROM branches
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [instance_from_db(row) for row in rows]
     
     @classmethod
     def instance_from_db(cls, row):
-        pass
+        department = cls.all.get(row[0])
+        if department:
+            department.name = row[1]
+            department.address = row[2]
+        else:
+            department = cls(name = row[1], address = row[2])
+            department.id = row[0]
+            cls.all[department.id] = department
+        return department 
 
     def save(self):
         pass
