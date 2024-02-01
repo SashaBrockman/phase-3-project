@@ -1,6 +1,7 @@
 # lib/cli.py
 
 from branch_helpers import branch_cli
+from customer_helpers import customer_cli
 from seed import seed_database
 
 
@@ -14,6 +15,8 @@ def main():
             exit()
         elif choice == "1":
             branch_cli()
+        elif choice == "2":
+            customer_cli()
         else:
             print("Please select a valid number option")
 
@@ -22,6 +25,7 @@ def menu():
     print("Please select an option:")
     print("0. Exit the program")
     print("1. View Branch menu")
+    print("2. View Customer menu")
 
 
 if __name__ == "__main__":
