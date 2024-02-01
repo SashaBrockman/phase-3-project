@@ -115,7 +115,7 @@ class Customer:
 
         rows = CURSOR.execute(sql).fetchall()
 
-        return [instance_from_db(row) for row in rows]
+        return [cls.instance_from_db(row) for row in rows]
     
     @classmethod
     def instance_from_db(cls, row):
@@ -123,8 +123,8 @@ class Customer:
         if customer:
             customer.name = row[1]
             customer.account_number = row[2]
-            customer.branch_id = row[3]
-            customer.balance = row[4]
+            customer.balance = row[3]
+            customer.branch_id = row[4]
         else:
             customer = cls(row[1], row[2], row[4], row[3])
             customer.id = row[0]
