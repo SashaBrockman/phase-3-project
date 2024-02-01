@@ -5,11 +5,12 @@ class Customer:
 
     all = {}
 
-    def __init__(self, name, account_number, balance = 0):
+    def __init__(self, name, account_number, balance = 0, branch_id):
         self.id = None
         self.name = name
         self.account_number = account_number
         self.balance = balance
+        self.branch_id = branch_id
 
     @property
     def name(self):
@@ -73,11 +74,19 @@ class Customer:
 
     @classmethod
     def drop_table(cls):
-        pass
+        sql = """
+            DROP TABLE IF EXISTS customers;
+        """
+        
+
+        CURSOR.execute(sql)
+        CONN.commit()
 
     @classmethod
-    def create(cls, name, account_number, balance = 0):
-        pass
+    def create(cls, name, account_number, balance = 0, branch_id):
+        customer = cls(name, account_number, balance, branch_id)
+        customer.save()
+        return customer
 
     def delete(self):
         pass
@@ -95,7 +104,19 @@ class Customer:
         pass
 
     def save(self):
-        pass
+        sql = """
+            INSERT INTO customers 
+            (name, account_number, balance, branch_id)
+            VALUES
+            (?, ?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.name, self.account_number, self.balance, self.branch_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+
+        type(self).all[self.id] = self
 
     @classmethod
     def find_by_account_number(cls, account_number):
