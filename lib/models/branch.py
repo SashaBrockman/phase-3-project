@@ -116,6 +116,15 @@ class Branch:
         return cls.instance_from_db(row) if row else None
 
     @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT * FROM branches
+            WHERE id = (?)
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+
+    @classmethod
     def has_name(cls, name):
         for branch in cls.all.values():
             if branch.name == name:
