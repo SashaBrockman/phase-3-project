@@ -89,7 +89,16 @@ class Customer:
         return customer
 
     def delete(self):
-        pass
+        sql = """
+            DELETE FROM customers
+            WHERE id = (?)
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
 
     @classmethod
     def delete_by_account_number(cls, account_number):
