@@ -66,6 +66,9 @@ class Branch:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
+        del type(self).all[self.id]
+        self.id = None
+
     @classmethod
     def delete_by_name(cls, name):
         for branch in cls.all.values():
