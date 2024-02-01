@@ -162,6 +162,3 @@ class Customer:
             if customer.account_number = account_number:
                 return True
         return False
-
-    def add_to_balance(self, amount):
-        pass
