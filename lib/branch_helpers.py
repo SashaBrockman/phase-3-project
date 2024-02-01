@@ -33,14 +33,12 @@ def branch_cli():
         else:
             print("Please enter a valid number command.")
 
-#TIER ONE HELPERS#
-
 def display_branches():
     print("displaying branches...")
     while True:
         branches = Branch.get_all()
         for branch in branches:
-            print_branch(branch)
+            print(f"Branch name: {branch.name}, Branch address: {branch.address}")
         input("Press Enter to return to previous menu")
         break
 
@@ -92,8 +90,3 @@ def delete_branch():
             break
         else:
             print("The name entered does not exist.")
-
-#TIER TWO HELPERS#
-
-def print_branch(branch):
-    print(f"Branch name: {branch.name}, Branch address: {branch.address}")
