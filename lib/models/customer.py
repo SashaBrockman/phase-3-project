@@ -6,7 +6,7 @@ class Customer:
 
     all = {}
 
-    def __init__(self, name, account_number, balance = 0, branch_id):
+    def __init__(self, name, account_number, branch_id, balance = 0):
         self.id = None
         self.name = name
         self.account_number = account_number
@@ -84,8 +84,8 @@ class Customer:
         CONN.commit()
 
     @classmethod
-    def create(cls, name, account_number, balance = 0, branch_id):
-        customer = cls(name, account_number, balance, branch_id)
+    def create(cls, name, account_number, branch_id, balance = 0):
+        customer = cls(name, account_number, branch_id, balance)
         customer.save()
         return customer
 
@@ -123,10 +123,10 @@ class Customer:
         if customer:
             customer.name = row[1]
             customer.account_number = row[2]
-            customer.balance = row[3]
-            customer.branch_id = row[4]
+            customer.branch_id = row[3]
+            customer.balance = row[4]
         else:
-            customer = cls(row[1], row[2], row[3], row[4])
+            customer = cls(row[1], row[2], row[4], row[3])
             customer.id = row[0]
             cls.all[customer.id] = customer
         return customer
