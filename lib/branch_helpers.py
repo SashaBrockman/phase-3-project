@@ -2,17 +2,16 @@
 
 from models.branch import Branch
 
-#TOP LEVEL HELPERS#
 
 def branch_menu():
     print("You have reached the branch menu.")
     print("Please select an option: ")
+    print("0: Return to previous menu")
     print("1: Display all Branches")
     print("2: NOT YET IMPLEMENTED (displays customers)")
     print("3: NOT YET IMPLEMENTED (displays total money held)")
     print("4: Create a Branch")
     print("5: Delete a Branch")
-    print("0: Return to previous menu")
 
 def branch_cli():
     while True:
