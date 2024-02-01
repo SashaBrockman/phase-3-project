@@ -51,7 +51,28 @@ def display_total():
     print("displaying total...")
 
 def create_branch():
+    looper = True
     print("creating branch...")
+    while looper:
+        print("Enter 'cancel' to leave branch creation.")
+        print("Please enter the branch name: ")
+        name = input("> ")
+        if name == "cancel":
+            looper = False
+        elif (type(name) == str) and (name != ""):
+            while looper:
+                print("Please enter the branch's address: ")
+                address = input("> ")
+                if address == "cancel":
+                    looper = False
+                elif (type(address) == str) and (address != ""):
+                    Branch.create(name, address)
+                    print("New branch has been created.")
+                    looper = False
+                else:
+                    print("Incorrect format. Branch's address must be a non-empty string.")
+        else:
+            print("Incorrect format. Branch name must be a non-empty string.")
 
 def delete_branch():
     print("deleting branch...")
