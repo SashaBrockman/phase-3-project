@@ -1,9 +1,6 @@
 # lib/customer_helpers.py
 
-def helper_1():
+from models.customer import Customer
+
+def customer_cli():
     print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
