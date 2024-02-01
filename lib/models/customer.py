@@ -6,7 +6,7 @@ class Customer:
 
     all = {}
 
-    def __init__(self, name, account_number, branch_id, balance = 0):
+    def __init__(self, name, account_number, branch_id, balance = 0.00):
         self.id = None
         self.name = name
         self.account_number = account_number
@@ -30,10 +30,10 @@ class Customer:
 
     @account_number.setter
     def account_number(self, account_number):
-        if (type(account_number) = int) and (len(account_number) != 0):
+        if (type(account_number) == int):
             self._account_number = account_number
         else:
-            raise ValueError("Account number must be a non empty integer")
+            raise ValueError("Account number must be an integer")
 
     @property
     def balance(self):
@@ -41,10 +41,10 @@ class Customer:
 
     @balance.setter
     def balance(self, balance):
-        if (type(balance) = float) and (len(balance) != 0):
+        if (type(balance) == float):
             self._balance = balance
         else:
-            raise ValueError("Balance must be a non empty float")
+            raise ValueError("Balance must be a float")
 
     @property
     def branch_id(self):
@@ -52,10 +52,10 @@ class Customer:
 
     @branch_id.setter
     def branch_id(self, branch_id):
-        if (type(branch_id) = int) and Branch.find_by_id(branch_id):
+        if (type(branch_id) == int) and Branch.find_by_id(branch_id):
             self._branch_id = branch_id
         else:
-            raise ValueError("Branch id must be a non empty integer")
+            raise ValueError("Branch id must be an integer and from existing branch")
 
     @classmethod
     def create_table(cls):
@@ -84,7 +84,7 @@ class Customer:
         CONN.commit()
 
     @classmethod
-    def create(cls, name, account_number, branch_id, balance = 0):
+    def create(cls, name, account_number, branch_id, balance = 0.00):
         customer = cls(name, account_number, branch_id, balance)
         customer.save()
         return customer
@@ -160,6 +160,6 @@ class Customer:
     def has_account_number(cls, account_number):
         customers = cls.all.values()
         for customer in customers:
-            if customer.account_number = account_number:
+            if customer.account_number == account_number:
                 return True
         return False
