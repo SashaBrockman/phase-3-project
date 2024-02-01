@@ -106,5 +106,19 @@ class Branch:
         row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
+    @classmethod
+    def has_name(cls, name):
+        for branch in cls.all:
+            if branch.name == name:
+                return True
+        return False
+    
+    @classmethod
+    def has_address(cls, address):
+        for branch in cls.all:
+            if branch.address == address:
+                return True
+        return False
+
     def customers(self):
         pass
