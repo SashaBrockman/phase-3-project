@@ -39,6 +39,22 @@ def display_customers():
 
 def display_by_acc_num():
     print("Displaying customer by account number...")
+    while True:
+        print("Enter 'cancel' to return to previous menu")
+        print("Please enter account number: ")
+        account_number = input("> ")
+        if account_number == "cancel":
+            break
+        try:
+            customer = Customer.find_by_account_number(int(account_number))
+            if customer:
+                print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+                input("Press enter to return to Customer menu")
+                break
+            else:
+                print("No customer could be found with that account number.")
+        except ValueError:
+            print("Account number must be an integer!")
 
 def display_branch():
     print("Displaying branch information...")

@@ -154,7 +154,7 @@ class Customer:
         """
 
         row = CURSOR.execute(sql, (account_number,)).fetchone()
-        return instance_from_db(row) if row else None
+        return cls.instance_from_db(row) if row else None
 
     @classmethod
     def has_account_number(cls, account_number):
