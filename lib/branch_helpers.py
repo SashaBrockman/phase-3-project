@@ -59,12 +59,16 @@ def create_branch():
         name = input("> ")
         if name == "cancel":
             looper = False
+        elif Branch.has_name(name):
+            print("A branch with that name already exists!")
         elif (type(name) == str) and (name != ""):
             while looper:
                 print("Please enter the branch's address: ")
                 address = input("> ")
                 if address == "cancel":
                     looper = False
+                elif Branch.has_address(address):
+                    print("A branch with that address already exists!")
                 elif (type(address) == str) and (address != ""):
                     Branch.create(name, address)
                     print("New branch has been created.")

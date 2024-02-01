@@ -67,6 +67,12 @@ class Branch:
         CONN.commit()
 
     @classmethod
+    def delete_by_name(cls, name):
+        for branch in cls.all.values():
+            if branch.name == name:
+                cls.all[branch.id].delete()
+
+    @classmethod
     def get_all(cls):
         sql = """
             SELECT * FROM branches
@@ -108,14 +114,14 @@ class Branch:
 
     @classmethod
     def has_name(cls, name):
-        for branch in cls.all:
+        for branch in cls.all.values():
             if branch.name == name:
                 return True
         return False
     
     @classmethod
     def has_address(cls, address):
-        for branch in cls.all:
+        for branch in cls.all.values():
             if branch.address == address:
                 return True
         return False
