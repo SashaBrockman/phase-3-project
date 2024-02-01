@@ -98,12 +98,12 @@ class Branch:
         type(self).all[self.id] = self
 
     @classmethod
-    def find_by_id(cls, id):
+    def find_by_name(cls, name):
         sql = """
             SELECT * FROM branches
-            WHERE id = (?)
+            WHERE name = (?)
         """
-        row = CURSOR.execute(sql, (id,)).fetchone()
+        row = CURSOR.execute(sql, (name,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
     def customers(self):
