@@ -147,7 +147,13 @@ class Customer:
 
     @classmethod
     def find_by_account_number(cls, account_number):
-        pass
+        sql = """
+            SELECT * FROM customers
+            WHERE account_number = (?)
+        """
+
+        row = CURSOR.execute(sql, (account_number,)).fetchone()
+        return instance_from_db(row) if row else None
 
     @classmethod
     def has_account_number(cls, account_number):
