@@ -57,7 +57,19 @@ class Customer:
 
     @classmethod
     def create_table(cls):
-        pass
+        sql = """
+            CREATE TABLE IF NOT EXISTS customers (
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                account_number INTEGER,
+                balance REAL,
+                branch_id INTEGER,
+                FOREIGN KEY (branch_id) REFERENCES branches(id)
+            )
+        """
+
+        CURSOR.execute(sql)
+        CONN.commit()
 
     @classmethod
     def drop_table(cls):
