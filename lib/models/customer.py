@@ -157,7 +157,11 @@ class Customer:
 
     @classmethod
     def has_account_number(cls, account_number):
-        pass
+        customers = cls.all.values()
+        for customer in customers:
+            if customer.account_number = account_number:
+                return True
+        return False
 
     def add_to_balance(self, amount):
         pass
