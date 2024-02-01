@@ -1,5 +1,6 @@
 # lib/models/customer.py
 from models.__init__ import CONN, CURSOR
+from models.branch import Branch
 
 class Customer:
 
@@ -50,8 +51,8 @@ class Customer:
         return self._branch_id
 
     @branch_id.setter
-    def branch_id(self, id):
-        if (type(branch_id) = int) and (len(branch_id) != 0):
+    def branch_id(self, branch_id):
+        if (type(branch_id) = int) and Branch.find_by_id(branch_id):
             self._branch_id = branch_id
         else:
             raise ValueError("Branch id must be a non empty integer")
