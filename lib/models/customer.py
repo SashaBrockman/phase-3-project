@@ -108,11 +108,27 @@ class Customer:
 
     @classmethod
     def get_all(cls):
-        pass
+        sql = """
+            SELECT * FROM customers
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [instance_from_db(row) for row in rows]
     
     @classmethod
     def instance_from_db(cls, row):
-        pass
+        customer = cls.all.get(row[0])
+        if customer:
+            customer.name = row[1]
+            customer.account_number = row[2]
+            customer.balance = row[3]
+            customer.branch_id = row[4]
+        else:
+            customer = cls(row[1], row[2], row[3], row[4])
+            customer.id = row[0]
+            cls.all[customer.id] = customer
+        return customer
 
     def save(self):
         sql = """
