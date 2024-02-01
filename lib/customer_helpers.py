@@ -36,6 +36,7 @@ def display_customers():
     customers = Customer.get_all()
     for customer in customers:
         print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+    input("Press enter to return to Customer menu")
 
 def display_by_acc_num():
     print("Displaying customer by account number...")
