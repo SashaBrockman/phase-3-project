@@ -102,7 +102,9 @@ class Customer:
 
     @classmethod
     def delete_by_account_number(cls, account_number):
-        pass
+        for customer in cls.all.values():
+            if customer.account_number == account_number:
+                customer.delete()
 
     @classmethod
     def get_all(cls):
@@ -136,7 +138,4 @@ class Customer:
         pass
 
     def add_to_balance(self, amount):
-        pass
-
-    def branch(self):
         pass
