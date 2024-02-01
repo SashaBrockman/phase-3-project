@@ -34,12 +34,10 @@ def branch_cli():
 
 def display_branches():
     print("displaying branches...")
-    while True:
-        branches = Branch.get_all()
-        for branch in branches:
-            print(f"Branch name: {branch.name}, Branch address: {branch.address}")
-        input("Press Enter to return to previous menu")
-        break
+    branches = Branch.get_all()
+    for branch in branches:
+        print(f"Branch name: {branch.name}, Branch address: {branch.address}")
+    input("Press Enter to return to previous menu")
 
 def display_customers():
     print("displaying customers...")
