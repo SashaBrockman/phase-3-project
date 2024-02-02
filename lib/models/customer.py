@@ -102,12 +102,6 @@ class Customer:
         self.id = None
 
     @classmethod
-    def delete_by_account_number(cls, account_number):
-        for customer in cls.all.values():
-            if customer.account_number == account_number:
-                customer.delete()
-
-    @classmethod
     def get_all(cls):
         sql = """
             SELECT * FROM customers
