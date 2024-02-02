@@ -120,17 +120,31 @@ class Branch:
 
     @classmethod
     def has_name(cls, name):
-        for branch in cls.all.values():
-            if branch.name == name:
-                return True
-        return False
+        sql = """
+            SELECT * FROM branches
+            WHERE name = (?)
+        """
+
+        row = CURSOR.execute(sql, (name,)).fetchone()
+
+        if row:
+            return True
+        else:
+            return False
     
     @classmethod
     def has_address(cls, address):
-        for branch in cls.all.values():
-            if branch.address == address:
-                return True
-        return False
+        sql = """
+            SELECT * FROM branches
+            WHERE address = (?)
+        """
+
+        row = CURSOR.execute(sql, (address,)).fetchone()
+
+        if row:
+            return True
+        else:
+            return False
 
     def customers(self):
         pass
