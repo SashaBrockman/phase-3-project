@@ -152,8 +152,14 @@ class Customer:
 
     @classmethod
     def has_account_number(cls, account_number):
-        customers = cls.all.values()
-        for customer in customers:
-            if customer.account_number == account_number:
-                return True
-        return False
+        sql = """
+            SELECT * FROM customers
+            WHERE account_number = (?)
+        """
+
+        row = CURSOR.execute(sql, (account_number,)).fetchone()
+
+        if row:
+            return True
+        else:
+            return False
