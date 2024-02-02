@@ -70,12 +70,6 @@ class Branch:
         self.id = None
 
     @classmethod
-    def delete_by_name(cls, name):
-        for branch in cls.all.values():
-            if branch.name == name:
-                cls.all[branch.id].delete()
-
-    @classmethod
     def get_all(cls):
         sql = """
             SELECT * FROM branches
