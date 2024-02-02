@@ -156,4 +156,4 @@ class Branch:
 
         rows = CURSOR.execute(sql, (self.id,)).fetchall()
 
-        return [Customer.instance_from_db(row) for row in rows if rows else none]
+        return [Customer.instance_from_db(row) for row in rows if rows]

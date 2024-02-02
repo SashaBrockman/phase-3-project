@@ -12,9 +12,9 @@ def customer_cli():
         elif customer_command == "1":
             display_customers()
         elif customer_command == "2":
-            display_by_acc_num()
+            get_customer_by_acc_num(display_customer)
         elif customer_command == "3":
-            display_branch()
+            get_customer_by_acc_num(display_branch)
         elif customer_command == "4":
             create_customer()
         elif customer_command == "5":
@@ -39,8 +39,7 @@ def display_customers():
         print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
     input("Press enter to return to Customer menu")
 
-def display_by_acc_num():
-    print("Displaying customer by account number...")
+def get_customer_by_acc_num(method):
     while True:
         print("Enter 'cancel' to return to previous menu")
         print("Please enter account number: ")
@@ -50,7 +49,7 @@ def display_by_acc_num():
         try:
             customer = Customer.find_by_account_number(int(account_number))
             if customer:
-                print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+                method(customer)
                 input("Press enter to return to Customer menu")
                 break
             else:
@@ -58,25 +57,12 @@ def display_by_acc_num():
         except ValueError:
             print("Account number must be an integer!")
 
-def display_branch():
-    print("Displaying branch information...")
-    while True:
-        print("Enter 'cancel' to return to previous menu")
-        print("Please enter account number: ")
-        account_number = input("> ")
-        if account_number == "cancel":
-            break
-        try:
-            customer = Customer.find_by_account_number(int(account_number))
-            if customer:
-                branch = Branch.find_by_id(customer.branch_id)
-                print(f"Branch name: {branch.name}, Branch address: {branch.address}")
-                input("Press enter to return to Customer menu")
-                break
-            else:
-                print("No customer could be found with that account number.")
-        except ValueError:
-            print("Account number must be an integer!")
+def display_customer(customer):
+    print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+
+def display_branch(customer):
+    branch = Branch.find_by_id(customer.branch_id)
+    print(f"Branch name: {branch.name}, Branch address: {branch.address}")
 
 def create_customer():
     print("Creating customer...")
