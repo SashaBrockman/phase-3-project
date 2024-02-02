@@ -147,4 +147,13 @@ class Branch:
             return False
 
     def customers(self):
-        pass
+        from models.customer import Customer
+
+        sql = """
+            SELECT * FROM customers
+            WHERE branch_id = (?)
+        """
+
+        rows = CURSOR.execute(sql, (self.id,)).fetchall()
+
+        return [Customer.instance_from_db(row) for row in rows if rows else none]
