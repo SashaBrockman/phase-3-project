@@ -62,6 +62,7 @@ def display_customer(customer):
 
 def display_branch(customer):
     branch = Branch.find_by_id(customer.branch_id)
+    print(f"Customer name: {customer.name}")
     print(f"Branch name: {branch.name}, Branch address: {branch.address}")
 
 def create_customer():
