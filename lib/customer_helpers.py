@@ -1,6 +1,7 @@
 # lib/customer_helpers.py
 
 from models.customer import Customer
+from models.branch import Branch
 
 def customer_cli():
     while True:
@@ -59,6 +60,23 @@ def display_by_acc_num():
 
 def display_branch():
     print("Displaying branch information...")
+    while True:
+        print("Enter 'cancel' to return to previous menu")
+        print("Please enter account number: ")
+        account_number = input("> ")
+        if account_number == "cancel":
+            break
+        try:
+            customer = Customer.find_by_account_number(int(account_number))
+            if customer:
+                branch = Branch.find_by_id(customer.branch_id)
+                print(f"Branch name: {branch.name}, Branch address: {branch.address}")
+                input("Press enter to return to Customer menu")
+                break
+            else:
+                print("No customer could be found with that account number.")
+        except ValueError:
+            print("Account number must be an integer!")
 
 def create_customer():
     print("Creating customer...")
