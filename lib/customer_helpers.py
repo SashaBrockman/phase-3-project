@@ -69,7 +69,16 @@ def display_branch(customer):
     print(f"Branch name: {branch.name}, Branch address: {branch.address}")
 
 def adjust_balance(customer):
-    print("Adjusting customer balance...")
+    while True:
+        print("Please enter a dollar amount to increase the balance by.")
+        print("NOTE: Include '-' before the amount with no space to decrease the balance.")
+        amount = input("> ")
+        try:
+            customer.balance += float(amount)
+            print(f"{customer.name}'s new balance is ${customer.balance: .2f}")
+            break
+        except ValueError:
+            print("Amount must be a float or integer. Please read the note as well.")
 
 def create_customer():
     print("Creating customer...")
