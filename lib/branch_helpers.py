@@ -26,7 +26,7 @@ def branch_cli():
         elif branch_command == "4":
             create_branch()
         elif branch_command == "5":
-            delete_branch()
+            get_branch_by_name(delete_branch)
         elif branch_command == "0":
             break
         else:
@@ -48,7 +48,12 @@ def get_branch_by_name(method):
             break
         elif (type(branch_name) == str) and (branch_name != ""):
             branch = Branch.find_by_name(branch_name)
-            method(branch)
+            if branch:
+                method(branch)
+                input("Press enter to return to Branch menu.")
+                break
+            else:
+                print("There is no branch with that name!")
         else:
             print("Branch name must be a non empty string!")
 
@@ -86,17 +91,6 @@ def create_branch():
         else:
             print("Incorrect format. Branch name must be a non-empty string.")
 
-def delete_branch():
-    print("deleting branch...")
-    while True:
-        print("Enter 'cancel' to leave branch creation.")
-        print("Enter the name of the branch you want to delete: ")
-        name = input("> ")
-        if name == "cancel":
-            break
-        elif (type(name) == str) and Branch.has_name(name):
-            Branch.delete_by_name(name)
-            print("Branch has been deleted.")
-            break
-        else:
-            print("The name entered does not exist.")
+def delete_branch(branch):
+    branch.delete()
+    print("Branch has been deleted.")
