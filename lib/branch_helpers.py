@@ -1,14 +1,14 @@
 # lib/branch_helpers.py
 
 from models.branch import Branch
-
+from customer_helpers import display_customer
 
 def branch_menu():
     print("You have reached the branch menu.")
     print("Please select an option: ")
     print("0: Return to previous menu")
     print("1: Display all Branches")
-    print("2: NOT YET IMPLEMENTED (displays customers)")
+    print("2: Display customers for a Branch")
     print("3: NOT YET IMPLEMENTED (displays total money held)")
     print("4: Create a Branch")
     print("5: Delete a Branch")
@@ -20,7 +20,7 @@ def branch_cli():
         if branch_command == "1":
             display_branches()
         elif branch_command == "2":
-            display_customers()
+            get_branch_by_name(display_customers)
         elif branch_command == "3":
             display_total()
         elif branch_command == "4":
@@ -57,8 +57,10 @@ def get_branch_by_name(method):
         else:
             print("Branch name must be a non empty string!")
 
-def display_customers():
-    print("displaying customers...")
+def display_customers(branch):
+    customers = branch.customers()
+    for customer in customers:
+        display_customer(customer)
 
 def display_total():
     print("displaying total...")
