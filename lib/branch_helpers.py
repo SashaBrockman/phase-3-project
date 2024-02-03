@@ -13,6 +13,7 @@ def branch_menu():
     print("4: Create a Branch")
     print("5: Delete a Branch")
 
+
 def branch_cli():
     while True:
         branch_menu()
@@ -32,26 +33,34 @@ def branch_cli():
         else:
             print("Please enter a valid number command.")
 
+
 def display_branches():
     print("displaying branches...")
     branches = Branch.get_all()
+    
     for branch in branches:
         print(f"Branch name: {branch.name}, Branch address: {branch.address}")
+    
     input("Press Enter to return to previous menu")
+
 
 def get_branch_by_name(method):
     while True:
         print("Enter 'cancel' at any time to return to previous menu")
         print("Please enter the branch's name: ")
         branch_name = input("> ")
+        
         if branch_name == "cancel":
             break
+        
         elif (type(branch_name) == str) and (branch_name != ""):
             branch = Branch.find_by_name(branch_name)
+            
             if branch:
                 method(branch)
                 input("Press enter to return to Branch menu.")
                 break
+            
             else:
                 print("There is no branch with that name!")
         else:
@@ -59,43 +68,57 @@ def get_branch_by_name(method):
 
 def display_customers(branch):
     customers = branch.customers()
+    
     for customer in customers:
         display_customer(customer)
+
 
 def display_total(branch):
     total = 0.0
     customers = branch.customers()
+    
     for customer in customers:
         total += customer.balance
+    
     print(f"The total held by this bank is ${total: .2f}.")
+
 
 def create_branch():
     looper = True
     print("creating branch...")
+    
     while looper:
         print("Enter 'cancel' to leave branch creation.")
         print("Please enter the branch name: ")
         name = input("> ")
+        
         if name == "cancel":
             looper = False
+        
         elif Branch.has_name(name):
             print("A branch with that name already exists!")
+        
         elif (type(name) == str) and (name != ""):
             while looper:
                 print("Please enter the branch's address: ")
                 address = input("> ")
+                
                 if address == "cancel":
                     looper = False
+                
                 elif Branch.has_address(address):
                     print("A branch with that address already exists!")
+                
                 elif (type(address) == str) and (address != ""):
                     Branch.create(name, address)
                     print("New branch has been created.")
                     looper = False
+                
                 else:
                     print("Incorrect format. Branch's address must be a non-empty string.")
         else:
             print("Incorrect format. Branch name must be a non-empty string.")
+
 
 def delete_branch(branch):
     branch.delete()
