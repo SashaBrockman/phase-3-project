@@ -15,10 +15,12 @@ class Customer:
 
     @property
     def name(self):
+        """Getter method for the customer name."""
         return self._name
 
     @name.setter
     def name(self, name):
+        """Setter method for the customer name. Verfies that it is a non empty string."""
         if (type(name) == str) and (name != ""):
             self._name = name
         else:
@@ -26,10 +28,12 @@ class Customer:
 
     @property
     def account_number(self):
+        """Getter method for the customer's account number."""
         return self._account_number
 
     @account_number.setter
     def account_number(self, account_number):
+        """Setter method for the customer's account number. Verifies that the number is an integer."""
         if (type(account_number) == int):
             self._account_number = account_number
         else:
@@ -37,10 +41,12 @@ class Customer:
 
     @property
     def balance(self):
+        """Getter method for the customer's balance."""
         return self._balance
 
     @balance.setter
     def balance(self, balance):
+        """Setter method for the customer's balance.  Verifies that the balance is a float."""
         if (type(balance) == float):
             self._balance = balance
         else:
@@ -48,10 +54,13 @@ class Customer:
 
     @property
     def branch_id(self):
+        """Getter method for the customer's branch id."""
         return self._branch_id
 
     @branch_id.setter
     def branch_id(self, branch_id):
+        """Setter method for the customer's branch id. Verifies that it is an integer and 
+            a branch with that id already exists."""
         if (type(branch_id) == int) and Branch.find_by_id(branch_id):
             self._branch_id = branch_id
         else:
@@ -59,6 +68,7 @@ class Customer:
 
     @classmethod
     def create_table(cls):
+        """Creates a new customers table if one does not already exist."""
         sql = """
             CREATE TABLE IF NOT EXISTS customers (
                 id INTEGER PRIMARY KEY,
@@ -75,6 +85,7 @@ class Customer:
 
     @classmethod
     def drop_table(cls):
+        """Deletes the customers table if it exists."""
         sql = """
             DROP TABLE IF EXISTS customers;
         """
@@ -85,11 +96,13 @@ class Customer:
 
     @classmethod
     def create(cls, name, account_number, branch_id, balance = 0.00):
+        """Creates a new instance of Customer and saves it."""
         customer = cls(name, account_number, branch_id, balance)
         customer.save()
         return customer
 
     def delete(self):
+        """Deletes a customer's information from the table and removes the instance from all."""
         sql = """
             DELETE FROM customers
             WHERE id = (?)
@@ -103,6 +116,7 @@ class Customer:
 
     @classmethod
     def get_all(cls):
+        """Fetches all customer information in the table and creates a new instance for each."""
         sql = """
             SELECT * FROM customers
         """
@@ -113,6 +127,9 @@ class Customer:
     
     @classmethod
     def instance_from_db(cls, row):
+        """Takes a row retrieved from customers and:
+            updates an existing instance with the information OR
+            creates and saves a new instance of customer in all"""
         customer = cls.all.get(row[0])
         if customer:
             customer.name = row[1]
@@ -126,6 +143,7 @@ class Customer:
         return customer
 
     def save(self):
+        """Inserts a customer's information into the table and adds the instance to all."""
         sql = """
             INSERT INTO customers 
             (name, account_number, balance, branch_id)
@@ -142,6 +160,8 @@ class Customer:
 
     @classmethod
     def find_by_account_number(cls, account_number):
+        """Selects a row from the table by the account number and creates a new instance
+            based on the information retrieved."""
         sql = """
             SELECT * FROM customers
             WHERE account_number = (?)
@@ -152,6 +172,7 @@ class Customer:
 
     @classmethod
     def has_account_number(cls, account_number):
+        """Checks if the customer table has an account number and returns a corresponding boolean value."""
         sql = """
             SELECT * FROM customers
             WHERE account_number = (?)
