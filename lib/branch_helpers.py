@@ -9,7 +9,7 @@ def branch_menu():
     print("0: Return to previous menu")
     print("1: Display all Branches")
     print("2: Display customers for a Branch")
-    print("3: NOT YET IMPLEMENTED (displays total money held)")
+    print("3: Display total held by a Branch")
     print("4: Create a Branch")
     print("5: Delete a Branch")
 
