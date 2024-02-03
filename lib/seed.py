@@ -15,9 +15,9 @@ def seed_database():
     homewood = Branch.create("Homewood", "2865 Lakeshore Dr")
     trussville = Branch.create("Trussville", "8456 Carraway St")
 
-    megan = Customer.create("Megan", 1, 1)
+    megan = Customer.create("Megan", 1, 1, 875.00)
     greg = Customer.create("Greg", 2, 1, 12500.00)
-    matthew = Customer.create("Matthew", 3, 2)
-    sarah = Customer.create("Sarah", 4, 2)
-    lucas = Customer.create("Lucas", 5, 3)
+    matthew = Customer.create("Matthew", 3, 2, 89.00)
+    sarah = Customer.create("Sarah", 4, 2, 150.00)
+    lucas = Customer.create("Lucas", 5, 3, 1200.00)
     ashley = Customer.create("Ashley", 6, 3, 100.00)
