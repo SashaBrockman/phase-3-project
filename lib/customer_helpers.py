@@ -44,7 +44,7 @@ def display_customers():
 
 def get_customer_by_acc_num(method):
     while True:
-        print("Enter 'cancel' to return to previous menu")
+        print("Enter 'cancel' at any time to return to previous menu")
         print("Please enter account number: ")
         account_number = input("> ")
         if account_number == "cancel":
@@ -74,6 +74,8 @@ def adjust_balance(customer):
         print("Please enter a dollar amount to increase the balance by.")
         print("NOTE: Include '-' before the amount with no space to decrease the balance.")
         amount = input("> ")
+        if amount == "cancel":
+            break
         try:
             customer.balance += float(amount)
             print(f"{customer.name}'s new balance is ${customer.balance: .2f}")
@@ -88,13 +90,13 @@ def create_customer():
         print("Enter 'cancel' at any time to leave this menu.")
         print("Please enter the customer's name: ")
         name = input("> ")
-        if input == "cancel":
+        if name == "cancel":
             looper = False
         elif (type(name) == str) and (name != ""):
             while looper:
                 print("Please enter a unique account number: ")
                 account_number = input("> ")
-                if input == "cancel":
+                if account_number == "cancel":
                     looper = False
                 else:
                     try:
