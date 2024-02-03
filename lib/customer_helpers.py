@@ -20,7 +20,7 @@ def customer_cli():
         elif customer_command == "5":
             create_customer()
         elif customer_command == "6":
-            delete_customer
+            get_customer_by_acc_num(delete_customer)
         else:
             print("Please enter a valid number command.")
 
@@ -61,7 +61,8 @@ def get_customer_by_acc_num(method):
             print("Account number must be an integer!")
 
 def display_customer(customer):
-    print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+    branch = Branch.find_by_id(customer.branch_id)
+    print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch: {branch.name}")
 
 def display_branch(customer):
     branch = Branch.find_by_id(customer.branch_id)
@@ -130,5 +131,6 @@ def create_customer():
         else:
             print("Name must be a non empty string!")
 
-def delete_customer():
-    print("Deleting customer...")
+def delete_customer(customer):
+    customer.delete()
+    print("Customer has been deleted.")
