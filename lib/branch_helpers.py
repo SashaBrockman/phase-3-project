@@ -22,7 +22,7 @@ def branch_cli():
         elif branch_command == "2":
             get_branch_by_name(display_customers)
         elif branch_command == "3":
-            display_total()
+            get_branch_by_name(display_total)
         elif branch_command == "4":
             create_branch()
         elif branch_command == "5":
@@ -62,8 +62,12 @@ def display_customers(branch):
     for customer in customers:
         display_customer(customer)
 
-def display_total():
-    print("displaying total...")
+def display_total(branch):
+    total = 0.0
+    customers = branch.customers()
+    for customer in customers:
+        total += customer.balance
+    print(f"The total held by this bank is ${total: .2f}.")
 
 def create_branch():
     looper = True
