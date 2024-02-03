@@ -39,7 +39,7 @@ def customer_menu():
 def display_customers():
     customers = Customer.get_all()
     for customer in customers:
-        print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch id: {customer.branch_id}")
+        display_customer(customer)
     input("Press enter to return to Customer menu")
 
 def get_customer_by_acc_num(method):
@@ -117,7 +117,7 @@ def create_customer():
                                             looper = False
                                         else:
                                             try:
-                                                customer = Customer(name, account_number, branch_id, float(balance))
+                                                customer = Customer.create(name, account_number, branch_id, float(balance))
                                                 print("New customer has been created.")
                                                 display_customer(customer)
                                                 input("Press enter to return to Customer menu.")
