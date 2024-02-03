@@ -39,6 +39,19 @@ def display_branches():
         print(f"Branch name: {branch.name}, Branch address: {branch.address}")
     input("Press Enter to return to previous menu")
 
+def get_branch_by_name(method):
+    while True:
+        print("Enter 'cancel' at any time to return to previous menu")
+        print("Please enter the branch's name: ")
+        branch_name = input("> ")
+        if branch_name == "cancel":
+            break
+        elif (type(branch_name) == str) and (branch_name != ""):
+            branch = Branch.find_by_name(branch_name)
+            method(branch)
+        else:
+            print("Branch name must be a non empty string!")
+
 def display_customers():
     print("displaying customers...")
 
