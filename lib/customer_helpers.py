@@ -82,6 +82,53 @@ def adjust_balance(customer):
 
 def create_customer():
     print("Creating customer...")
+    looper = True
+    while looper:
+        print("Enter 'cancel' at any time to leave this menu.")
+        print("Please enter the customer's name: ")
+        name = input("> ")
+        if input == "cancel":
+            looper = False
+        elif (type(name) == str) and (name != ""):
+            while looper:
+                print("Please enter a unique account number: ")
+                account_number = input("> ")
+                if input == "cancel":
+                    looper = False
+                else:
+                    try:
+                        account_number = int(account_number)
+                        if Customer.has_account_number(account_number):
+                            print("An account with that number already exists!")
+                        else:
+                            while looper:
+                                print("Please enter the name of the customer's branch:")
+                                branch_name = input("> ")
+                                if branch_name == "cancel":
+                                    looper = False
+                                elif (type(branch_name) == str) and Branch.has_name(branch_name):
+                                    branch = Branch.find_by_name(branch_name)
+                                    branch_id = branch.id
+                                    while looper:
+                                        print("Please enter an initial balance: ")
+                                        balance = input("> ")
+                                        if balance == "cancel":
+                                            looper = False
+                                        else:
+                                            try:
+                                                customer = Customer(name, account_number, branch_id, float(balance))
+                                                print("New customer has been created.")
+                                                display_customer(customer)
+                                                input("Press enter to return to Customer menu.")
+                                                looper = False
+                                            except ValueError:
+                                                print("Balance needs to be an integer or float!")
+                                else:
+                                    print("Branch name must be a string and an existing branch! ")
+                    except ValueError:
+                        print("Account number must be an integer!")
+        else:
+            print("Name must be a non empty string!")
 
 def delete_customer():
     print("Deleting customer...")
