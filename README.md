@@ -149,9 +149,6 @@
     has name (class method)
         Searches the branches table to see if a name exists and returns a corresponding boolean value.
 
-    has address (calss method)
-        Searches the branches table to see if an address exists and returns a corresponding boolean value.
-
     customers (self method)
         Fetches informtion from the customers table to return one or more instances of Customer that belong 
         to a branch.

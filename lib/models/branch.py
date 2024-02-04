@@ -148,21 +148,6 @@ class Branch:
             return True
         else:
             return False
-    
-    @classmethod
-    def has_address(cls, address):
-        """Searches the branches table to see if an address exists and returns a corresponding boolean value."""
-        sql = """
-            SELECT * FROM branches
-            WHERE address = (?)
-        """
-
-        row = CURSOR.execute(sql, (address,)).fetchone()
-
-        if row:
-            return True
-        else:
-            return False
 
     def customers(self):
         """Fetches informtion from the customers table to return one or more instances of Customer that belong to a branch."""
