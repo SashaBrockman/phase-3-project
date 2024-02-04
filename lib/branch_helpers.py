@@ -29,6 +29,7 @@ def branch_cli():
         elif branch_command == "4":
             create_branch()
         elif branch_command == "5":
+            print("\n ---DELETE BRANCH---")
             get_branch_by_name(delete_branch)
         elif branch_command == "0":
             break

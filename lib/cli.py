@@ -11,7 +11,7 @@ def main():
         menu()
         choice = input("> ")
         if choice == "0":
-            print("n\ Goodbye! \n")
+            print("\n Goodbye! \n")
             exit()
         elif choice == "1":
             branch_cli()
