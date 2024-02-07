@@ -7,11 +7,10 @@ def branch_menu():
     print("\n -----BRANCH MENU----- \n")
     print("Please select an option: \n")
     print("0: Return to previous menu")
-    print("1: Display all Branches")
-    print("2: Display customers for a Branch")
-    print("3: Display total held by a Branch")
-    print("4: Create a Branch")
-    print("5: Delete a Branch")
+    print("1: View all Branches")
+    print("2: View Branch information")
+    print("3: Create a Branch")
+    print("4: Delete a Branch")
 
 
 def branch_cli():
@@ -21,14 +20,11 @@ def branch_cli():
         if branch_command == "1":
             display_branches()
         elif branch_command == "2":
-            print("\n ---CUSTOMERS---")
-            get_branch_by_name(display_customers)
+            print("\n ---BRANCH INFORMATION---")
+            get_branch_by_name(display_branch)
         elif branch_command == "3":
-            print("\n ---TOTAL HELD---")
-            get_branch_by_name(display_total)
-        elif branch_command == "4":
             create_branch()
-        elif branch_command == "5":
+        elif branch_command == "4":
             print("\n ---DELETE BRANCH---")
             get_branch_by_name(delete_branch)
         elif branch_command == "0":
@@ -60,7 +56,7 @@ def get_branch_by_name(method):
             branch = Branch.find_by_name(branch_name)
             
             if branch:
-                print("/n")
+                print("\n")
                 method(branch)
                 input("\nPress enter to return to Branch menu. \n")
                 break
@@ -70,18 +66,13 @@ def get_branch_by_name(method):
         else:
             print("\nBranch name must be a non empty string! \n")
 
-def display_customers(branch):
-    customers = branch.customers()
-    
-    for customer in customers:
-        display_customer(customer)
 
-
-def display_total(branch):
+def display_branch(branch):
     total = 0.0
     customers = branch.customers()
     
     for customer in customers:
+        print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}")
         total += customer.balance
     
     print(f"\nThe total held by this bank is ${total: .2f}.")
