@@ -15,14 +15,11 @@ def customer_cli():
             print("\n ---VIEW CUSTOMER---")
             get_customer_by_acc_num(display_customer)
         elif customer_command == "3":
-            print("\n ---VIEW BRANCH---")
-            get_customer_by_acc_num(display_branch)
-        elif customer_command == "4":
             print("\n ---ADJUST BALANCE---")
             get_customer_by_acc_num(adjust_balance)
-        elif customer_command == "5":
+        elif customer_command == "4":
             create_customer()
-        elif customer_command == "6":
+        elif customer_command == "5":
             print("\n ---DELETE CUSTOMER---")
             get_customer_by_acc_num(delete_customer)
         else:
@@ -33,12 +30,11 @@ def customer_menu():
     print("\n -----CUSTOMER MENU----- \n")
     print("Please select an option: ")
     print("0: Return to previous menu")
-    print("1: Display all customers")
-    print("2: Display customer by account number")
-    print("3: Display branch information for a customer")
-    print("4: Adjust customer balance")
-    print("5: Create a customer")
-    print("6: Delete a customer")
+    print("1: View all customers")
+    print("2: View customer information")
+    print("3: Adjust customer balance")
+    print("4: Create a customer")
+    print("5: Delete a customer")
 
 
 def display_customers():
@@ -78,12 +74,7 @@ def get_customer_by_acc_num(method):
 
 def display_customer(customer):
     branch = Branch.find_by_id(customer.branch_id)
-    print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}, Branch: {branch.name}")
-
-
-def display_branch(customer):
-    branch = Branch.find_by_id(customer.branch_id)
-    print(f"Customer name: {customer.name}")
+    print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}")
     print(f"Branch name: {branch.name}, Branch address: {branch.address}")
 
 
