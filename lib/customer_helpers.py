@@ -29,12 +29,12 @@ def customer_cli():
 def customer_menu():
     print("\n -----CUSTOMER MENU----- \n")
     print("Please select an option: ")
-    print("0: Return to previous menu")
-    print("1: View all customers")
-    print("2: View customer information")
-    print("3: Adjust customer balance")
-    print("4: Create a customer")
-    print("5: Delete a customer")
+    print("0: Return to Previous Menu")
+    print("1: View All Customers")
+    print("2: View Customer Information")
+    print("3: Adjust Customer Balance")
+    print("4: Create a Customer")
+    print("5: Delete a Customer")
 
 
 def display_customers():

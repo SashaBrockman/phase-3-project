@@ -6,9 +6,9 @@ from customer_helpers import display_customer
 def branch_menu():
     print("\n -----BRANCH MENU----- \n")
     print("Please select an option: \n")
-    print("0: Return to previous menu")
-    print("1: View all Branches")
-    print("2: View Branch information")
+    print("0: Return to Previous Menu")
+    print("1: View All Branches")
+    print("2: View Branch Information")
     print("3: Create a Branch")
     print("4: Delete a Branch")
 
