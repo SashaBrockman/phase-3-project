@@ -71,11 +71,12 @@ def display_branch(branch):
     total = 0.0
     customers = branch.customers()
     
+    print(f"Branch name: {branch.name}, Branch address: {branch.address}\n")
     for customer in customers:
         print(f"Customer name: {customer.name}, Account number: {customer.account_number}, Balance: ${customer.balance: .2f}")
         total += customer.balance
     
-    print(f"\nThe total held by this bank is ${total: .2f}.")
+    print(f"\nThe total held by this bank is ${total: .2f}")
 
 
 def create_branch():
