@@ -43,6 +43,7 @@ def display_customers():
     
     for customer in customers:
         display_customer(customer)
+        print("\n")
     
     input("\nPress enter to return to Customer menu \n")
 
