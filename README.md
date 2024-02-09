@@ -36,20 +36,16 @@
         Accesses the information for all current branches and displays them to the user. Hitting enter
         afterwards returns the user to the Branch menu.
 
-    2: Display customers for a Branch
-        Brings up another input for the user to enter the name of the Branch. From there, it accesses the
-        Customers associated with that Branch and prints them to the command line.
+    2: Display Branch Information
+        Brings up another input for the user to enter the name of the Branch. It displays the branch name, 
+        address, and it accesses the Customers associated with that Branch and prints them to the command 
+        line along with the total held in the Branch.
 
-    3: Display total held by a Branch
-        Brings up another input for the user to enter the name of the Branch. From there, it accesses the
-        Customers associated with that Branch, adds their total balances, and displays it on the command
-        line.
-
-    4: Create a Branch
+    3: Create a Branch
         Brings up a series of inputs that requests information from the user in order to create a new 
         Branch. Each input is validated to ensure that a Branch can be created without errors.
 
-    5: Delete a Branch
+    4: Delete a Branch
         Brings up another input for the user to enter the name of the Branch. From there it grabs the Branch
         instance from the table and removes its information from the class "all" variable and table.
 
@@ -75,21 +71,16 @@
         Brings up another input for the user to enter the account number for the Customer. From there it 
         grabs the Customer instance from the table and displays it to the user.
 
-    3: Display branch information for a customer
-        Brings up another input for the user to enter the account number for the Customer. From there it 
-        grabs the Customer information, finds the Branch associated with the account, and displays the
-        information.
-
-    4: Adjust customer balance
+    3: Adjust customer balance
         Brings up another input for the user to enter the account number for the Customer. It grabs the 
         Customer information and then prompts the user to enter the amount they wish to change the 
         balance by.
 
-    5: Create a customer
+    4: Create a customer
         Brings up a series of inputs that requests information from the user in order to create a new 
         Customer. Each input is validated to ensure that a Branch can be created without errors.
 
-    6: Delete a customer
+    5: Delete a customer
         Brings up another input for the user to enter the account number for the Customer. From there it 
         grabs the Customer instance from the table and removes its information from the class "all" variable 
         and table.
