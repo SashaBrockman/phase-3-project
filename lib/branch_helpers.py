@@ -117,5 +117,8 @@ def create_branch():
 
 
 def delete_branch(branch):
+    customers = branch.customers()
     branch.delete()
+    for customer in customers:
+        customer.delete()
     print("\nBranch has been deleted.")
